@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>收支平衡大师🚦</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>收支平衡大师🚦</h1>
+          <p>当日预算 - 当日支出 = 当日结余，自动累计至储备金</p>
+        </div>
+        <div class="budget-editor">
+          <div class="budget-grid">
+            <div class="budget-row">
+              <label for="monthlyBudget">当月预算</label>
+              <input id="monthlyBudget" type="number" min="0" step="1" />
+            </div>
+            <div class="budget-row">
+              <label for="dailyBudget">当日预算</label>
+              <div class="budget-input-wrap">
+                <input id="dailyBudget" type="number" min="0" step="1" />
+                <button id="saveBudgetBtn" type="button">保存</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="stats">
+        <article>
+          <h2 id="spendTitle">所选支出</h2>
+          <p id="todaySpend">¥0</p>
+        </article>
+        <article>
+          <h2 id="remainTitle">所选结余</h2>
+          <p id="todayRemain">¥0</p>
+        </article>
+        <article>
+          <h2>当前储备金</h2>
+          <p id="reserveFund">¥0</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>日历视图</h2>
+          <div class="calendar-controls">
+            <div class="view-switch">
+              <button id="yearViewBtn" type="button" class="ghost active">年历</button>
+              <button id="monthViewBtn" type="button" class="ghost">月历</button>
+            </div>
+            <div class="period-switch">
+              <button id="prevPeriodBtn" class="pager-btn" type="button" aria-label="上一段" title="上一段">◀</button>
+              <span id="periodLabel"></span>
+              <button id="nextPeriodBtn" class="pager-btn" type="button" aria-label="下一段" title="下一段">▶</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calendar-wrap">
+          <div id="yearCalendar" class="calendar-shell">
+            <div class="month-axis-row">
+              <div class="axis-spacer"></div>
+              <div id="monthAxis" class="month-axis"></div>
+            </div>
+            <div class="calendar-main">
+              <div class="weekday-axis" aria-hidden="true">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+              <div id="calendarGrid" class="calendar-grid"></div>
+            </div>
+          </div>
+
+          <div id="monthCalendar" class="month-shell hidden">
+            <div class="month-week-header" aria-hidden="true">
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+              <span>Fri</span>
+              <span>Sat</span>
+              <span>Sun</span>
+            </div>
+            <div id="monthGrid" class="month-grid"></div>
+          </div>
+        </div>
+
+        <div class="legend" aria-label="图例说明">
+          <div class="levels" aria-hidden="true">
+            <span class="lv lv0" tabindex="0" data-tip="当日结余 ≤ -50"></span>
+            <span class="lv lv1" tabindex="0" data-tip="-50 &lt; 当日结余 &lt; 0"></span>
+            <span class="lv lv2" tabindex="0" data-tip="当日结余 = 0"></span>
+            <span class="lv lv3" tabindex="0" data-tip="0 &lt; 当日结余 &lt; 50"></span>
+            <span class="lv lv4" tabindex="0" data-tip="当日结余 ≥ 50"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>当日支出金额</h2>
+          <p id="selectedDateLabel"></p>
+        </div>
+        <form id="entryForm" class="entry-form">
+          <input id="spendInput" type="number" min="0" step="0.01" required />
+          <button type="submit">登记</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
